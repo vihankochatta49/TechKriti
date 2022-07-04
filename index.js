@@ -4,11 +4,14 @@ const path = require("path");
 const flash = require("connect-flash");
 const session = require("express-session");
 const passport = require("passport");
+const { ensureAuthenticated } = require("../config/auth");
+
 const app = express();
 const port = 3000;
 
 require("./config/passport")(passport);
 require("./config/googleAuth");
+require("./config/facebookAuth");
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
@@ -51,6 +54,11 @@ app.get(
 );
 
 app.get(
+  "/auth/facebook",
+  passport.authenticate("facebook", { scope: ["email", "public_profile"] })
+);
+
+app.get(
   "/google/callback",
   passport.authenticate("google", {
     successRedirect: "/feed",
@@ -58,8 +66,21 @@ app.get(
   })
 );
 
+app.get(
+  "/facebook/callback",
+  passport.authenticate("facebook", {
+    successRedirect: "/feed",
+    failureRedirect: "/auth/facebook/failure",
+  })
+);
+
 //handle google auth failure
 app.get("/auth/google/failure", (req, res) => {
+  res.send("Failed to authenticate..");
+});
+
+//handle facebook auth failure
+app.get("/auth/facebook/failure", (req, res) => {
   res.send("Failed to authenticate..");
 });
 
@@ -70,7 +91,7 @@ app.get("/", (req, res) => {
   res.render("register");
 });
 
-app.get("/feed", (req, res) => {
+app.get("/feed", ensureAuthenticated, (req, res) => {
   res.send("Success");
 });
 
