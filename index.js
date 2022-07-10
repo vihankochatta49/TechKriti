@@ -4,8 +4,11 @@ const path = require("path");
 const flash = require("connect-flash");
 const session = require("express-session");
 const passport = require("passport");
+const methodOverride = require("method-override");
 const { ensureAuthenticated } = require("../config/auth");
-
+const userDb = require("./routes/registerModels");
+const eventsDb = require("./routes/eventModel");
+const imageDb = require("./routes/models");
 const app = express();
 const port = 3000;
 
@@ -15,6 +18,7 @@ require("./config/facebookAuth");
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride("_method"));
 
 mongoose
   .connect("mongodb://localhost:27017/revise")
@@ -91,8 +95,37 @@ app.get("/", (req, res) => {
   res.render("register");
 });
 
-app.get("/feed", ensureAuthenticated, (req, res) => {
-  res.send("Success");
+app.get("/feed", ensureAuthenticated, async (req, res) => {
+  const profile = req.user;
+  const events = await eventsDb.find().sort({ startDate: -1 });
+  res.render("feed", { profile, events });
+});
+
+app.put("/update/:name", async (req, res) => {
+  try {
+    const info = userDb.findOne({
+      slugName: req.params.name,
+    });
+    await userDb.updateMany(info, {
+      $set: {
+        college: req.body.college,
+        emailID: req.body.emailID,
+        phone: req.body.phone,
+      },
+    });
+    res.redirect(`/profile/${req.params.name}`);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.get("/profile/:name", ensureAuthenticated, async (req, res) => {
+  const profile = await userDb.findOne({
+    slugName: req.params.name,
+  });
+  const history = await imageDb.find();
+  if (profile == null) res.send("Nahi hai");
+  else res.render("dashboard", { profile, history });
 });
 
 app.listen(port);

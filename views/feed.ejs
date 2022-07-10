@@ -1,0 +1,17 @@
+<a href="/profile/<%= profile.slugName %>">Profile</a>
+<% events.forEach(function(e) {%>
+<h1><%=e.title%></h1>
+<h3>Points: <%=e.points%></h3>
+<h3>Start-Date: <%=e.startDate%></h3>
+<h3>End-Date: <%=e.endDate%></h3>
+<p>Description: <%=e.description%></p>
+<form
+  action="/save/<%= profile.slugName %>/<%= e.title %>"
+  method="POST"
+  enctype="multipart/form-data"
+>
+  <input type="file" name="images" />
+  <button type="submit">Upload</button>
+</form>
+
+<%}) %>

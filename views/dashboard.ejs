@@ -1,0 +1,21 @@
+<h1><%=profile.name%></h1>
+<h1><%=profile.college%></h1>
+<h1><%=profile.phone%></h1>
+<h1><%=profile.emailID%></h1>
+<form action="/update/<%=profile.slugName%>?_method=PUT" method="POST">
+  <input type="text" name="college" />
+  <input type="text" name="emailID" />
+  <input type="number" name="phone" />
+  <button type="submit">Update</button>
+</form>
+<a href="/user/logout">Logout</a>
+
+<h1>History</h1>
+<% history.forEach(function(e) {%>
+<h3><%= e.title%></h3>
+<img
+  src="data:<%= e.contentType %>;base64,<%= e.imageBase64 %>"
+  height="250"
+  width="250"
+/>
+<%})%>
