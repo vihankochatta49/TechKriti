@@ -10,7 +10,7 @@ const userDb = require("./routes/registerModels");
 const eventsDb = require("./routes/eventModel");
 const imageDb = require("./routes/models");
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 //for authentication
 require("./config/passport")(passport);
@@ -28,7 +28,7 @@ app.use(methodOverride("_method"));
 
 //database connection
 mongoose
-  .connect("mongodb://localhost:27017/revise")
+  .connect(process.env.MONGODB_URI || "mongodb://localhost:27017/revise")
   .then(() => {
     console.log("connection successfull...");
   })
