@@ -2,10 +2,14 @@
 <h1><%=profile.college%></h1>
 <h1><%=profile.phone%></h1>
 <h1><%=profile.emailID%></h1>
-<form action="/update/<%=profile.slugName%>?_method=PUT" method="POST">
-  <input type="text" name="college" />
-  <input type="text" name="emailID" />
-  <input type="number" name="phone" />
+<h1><%=profile.points%></h1>
+<form
+  action="/update/<%=profile.slugName%>/<%= profile.id%>?_method=PUT"
+  method="POST"
+>
+  <input type="text" name="college" placeholder="College" required />
+  <input type="text" name="emailID" placeholder="email-id" required />
+  <input type="number" name="phone" placeholder="Phone" required />
   <button type="submit">Update</button>
 </form>
 <a href="/user/logout">Logout</a>
@@ -13,9 +17,19 @@
 <h1>History</h1>
 <% history.forEach(function(e) {%>
 <h3><%= e.title%></h3>
+<%if(e.points == 0) {%>
+<h4>Points: Not approved yet</h4>
+<%}%><% if(e.points == -1) {%>
+<h4>Points: Approval Denied Post again</h4>
+<%}%> <% if(e.points > 0) {%>
+<h4>Points: <%=e.points%></h4>
+<%}%>
 <img
   src="data:<%= e.contentType %>;base64,<%= e.imageBase64 %>"
   height="250"
   width="250"
 />
+<form action="/delete/<%=e.id%>?_method=DELETE" method="POST">
+  <button type="submit">Delete</button>
+</form>
 <%})%>

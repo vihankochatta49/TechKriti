@@ -5,14 +5,17 @@ const fs = require("fs");
 const store = require("../config/multer");
 const router = express.Router();
 
+//route for register page
 router.get("/register", (req, res) => {
   res.render("register");
 });
 
+//route for login page
 router.get("/login", (req, res) => {
   res.render("login");
 });
 
+//route for uploading images
 router.post("/save/:name/:title", store.single("images"), (req, res) => {
   const createDoc = async () => {
     try {
