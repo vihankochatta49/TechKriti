@@ -1,35 +1,370 @@
-<h1><%=profile.name%></h1>
-<h1><%=profile.college%></h1>
-<h1><%=profile.phone%></h1>
-<h1><%=profile.emailID%></h1>
-<h1><%=profile.points%></h1>
-<form
-  action="/update/<%=profile.slugName%>/<%= profile.id%>?_method=PUT"
-  method="POST"
->
-  <input type="text" name="college" placeholder="College" required />
-  <input type="text" name="emailID" placeholder="email-id" required />
-  <input type="number" name="phone" placeholder="Phone" required />
-  <button type="submit">Update</button>
-</form>
-<a href="/user/logout">Logout</a>
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog site</title>
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+      }
 
-<h1>History</h1>
-<% history.forEach(function(e) {%>
-<h3><%= e.title%></h3>
-<%if(e.points == 0) {%>
-<h4>Points: Not approved yet</h4>
-<%}%><% if(e.points == -1) {%>
-<h4>Points: Approval Denied Post again</h4>
-<%}%> <% if(e.points > 0) {%>
-<h4>Points: <%=e.points%></h4>
-<%}%>
-<img
-  src="data:<%= e.contentType %>;base64,<%= e.imageBase64 %>"
-  height="250"
-  width="250"
-/>
-<form action="/delete/<%=e.id%>?_method=DELETE" method="POST">
-  <button type="submit">Delete</button>
+      body {
+        background-image: url("https://cdn1.photostockeditor.com/c/2812/black-white-pencil-on-black-platform-background-background-image.jpg");
+        background-size: cover;
+        font-family: sans-serif;
+      }
+
+      .nav {
+        max-width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 15px 2px 2px gold;
+        padding: 10px;
+        height: 50px;
+      }
+
+      .head {
+        font-size: 2.2rem;
+        color: #fff;
+        font-weight: 600;
+        font-family: monospace;
+        margin-left: 15px;
+      }
+
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .profile {
+        color: gold;
+        text-decoration: none;
+        font-size: 2.2rem;
+        margin-left: 10px;
+      }
+
+      .profile:hover {
+        color: white !important;
+      }
+
+      .half {
+        display: flex;
+      }
+
+      .blogs {
+        display: grid;
+        grid-template-columns: auto;
+        align-content: start;
+        justify-content: center;
+        flex-direction: column;
+        padding: 10px 0px 20px;
+        margin: 0px 25px;
+      }
+
+      .bai {
+        position: relative;
+        min-width: 600px;
+        max-width: 800px;
+        background-color: rgba(0,0,0,0.7);
+        padding: 15px;
+        margin-top: 25px;
+        border: 2px solid gold;
+        border-radius: 10px;
+        box-sizing: border-box;
+        box-shadow: 0 15px 35px rgb(50 50 93 / 10%), 0 5px 15px rgb(0 0 0 / 7%) !important;
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      .protfolio {
+        text-align: center;
+        max-width: 100%;
+        width: 300px;
+        font-size: 1.2rem;
+        height: fit-content;
+        margin-left: 50px;
+        margin-right: 15px;
+        margin-top: 35px;
+        background-color: rgba(255,255,255,0.9);
+        border: 3px solid gold;
+        border-radius: 10px;
+        box-shadow: 0 15px 35px rgb(50 50 93 / 10%), 0 5px 15px rgb(0 0 0 / 7%) !important;
+        line-height: 1.8;
+        padding: 15px;
+      }
+
+      .protfolio a {
+        background-color: white;
+      }
+
+      .protfolio a:hover {
+        background-color: rgb(255 255 255 / 80%);
+      }
+
+      .blog {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        /* align-items: start; */
+      }
+
+      .written-by {
+        display: flex;
+        color: white;
+        font-size: 14px;
+        align-items: center;
+        margin-bottom: 15px;
+        font-family: monospace;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      h4 {
+        color: white;
+      }
+
+      .head1 {
+        width: 85%;
+        margin-bottom: 10px;
+        color: white;
+        font-size: 1.8em;
+        word-spacing: -5px;
+        font-family: monospace;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .head1:hover {
+        text-decoration: underline;
+      }
+
+      .date {
+        color: white;
+        margin: 3px 0px 8px;
+        font-size: 0.7rem;
+      }
+
+      .para {
+        color: white;
+        font-size: 1.2em;
+        margin: 10px 0px;
+      }
+
+      .like {
+        font-size: 1rem;
+        margin-top: 10px;
+        color: wheat;
+      }
+
+      .btns {
+        margin-top: 10px;
+        display: flex;
+      }
+
+      .btn {
+        margin: 5px 0px 0px -1px;
+        background-color: white;
+        border: 2px solid white;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      .like-btn {
+        color: gold;
+        font-size: 1.5rem;
+        background-color:black;
+        cursor: pointer;
+      }
+
+      .like-btn:hover {
+        color: #4267b2;
+      }
+      
+      input {
+        border: 2px solid white;
+        border-bottom: 2px solid gray;
+        font-size: 15px;
+        padding: 6px;
+        margin-top: 10px;
+      }
+      
+      .msg {
+        color: green;
+        font-size: 1.2em;
+        margin-top: 10px;
+      }
+
+      .update-btn {
+        display: block;
+        margin: 10px auto;
+        font-size: 20px;
+        padding: 10px;
+        border: 2px solid gold;
+        background: rgba(0,0,0,0.8);
+        color: white;
+        border-radius: 15px;
+      }
+
+      .update-btn:hover {
+        background-color: #4267b2;
+        border: 2px solid black;
+      }
+
+      .btn-delete {
+        background-color: rgba(0,0,0,0.8);
+        color: gold;
+        font-size: 1.2rem;
+      }
+
+      .btn-delete:hover {
+        color: red;
+      }
+      @media screen and (max-width: 800px) {
+        .plus {
+          right: 5px;
+        }
+
+        .head {
+          font-size: 2rem;
+          margin-left: 0px;
+        }
+
+        .blogs {
+          padding: 10px 10px 20px;
+          width: auto;
+        }
+
+        .bai {
+          padding: 15px 10px;
+          max-width: 100%;
+          min-width: 300px;
+        }
+
+        .blog {
+          max-width: 100%;
+          width: 100%;
+          flex-direction: column;
+        }
+
+        .blog img {
+          margin: auto !important;
+          padding: 10px;
+        }
+
+        .protfolio {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="nav">
+      <h1 class="head">CAMPUS AMBASSADOR</h1>
+      <div class="dropdown" style="margin-right: 15px">
+        <a class="profile" href="/feed"
+          ><i class="fas fa-home"></i
+        ></a>
+        <a class="profile" href="/user/logout" style="color: red;"
+        ><i class="fas fa-sign-out-alt"></i
+          ></a>
+      </div>
+    </nav>
+
+    <section
+      style="display: flex; justify-content: center;"
+    >
+      <div class="blogs">
+        <!-- all articles -->
+
+        <% history.forEach(function (e) { %>
+        <div class="bai">
+          <!-- single article -->
+          <div class="blog">
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+              "
+            >
+              <!--author name-->
+              <div>
+                <p class="written-by">
+                  <%= e.title %>
+                </p>
+                <%if(e.points == 0) {%>
+                  <h4>Points: Not approved yet</h4>
+                  <%}%><% if(e.points == -1) {%>
+                  <h4>Points: Approval Denied Post again</h4>
+                  <%}%> <% if(e.points > 0) {%>
+                  <h4>Points: <%=e.points%></h4>
+                  <%}%>
+              </div>
+
+            </div>
+
+            <% if(e.imageBase64) {%>
+
+            <img
+              src="data:<%= e.contentType %>;base64,<%= e.imageBase64 %>"
+              height="150"
+              width="200"
+              style="margin: 15px"
+            />
+            <form action="/delete/<%=e.id%>?_method=DELETE" method="POST">
+              <button type="submit" class="btn-delete"><i class="far fa-trash-alt"></i></button>
+            </form>
+            <% } %>
+          </div>
+         
+        </div>
+        <%})%>
+      </div>
+      <div>
+        <div class="protfolio">
+          <p style="font-weight: 600; margin-bottom: 20px">
+            <%=profile.name%>
+          </p>
+          <p style="font-weight: 600; margin-bottom: 20px">
+            <%=profile.college%>
+          </p><p style="font-weight: 600; margin-bottom: 20px">
+            <%=profile.phone%>
+          </p><p style="font-weight: 600; margin-bottom: 20px">
+            <%=profile.emailID%>
+          </p>
+          <p style="font-weight: 600; margin-bottom: 20px">
+            <%=profile.points%>
+          </p>
+        </div>
+        <div class="protfolio" style="text-align: center; background: white">
+          
+<form
+action="/update/<%=profile.slugName%>/<%= profile.id%>?_method=PUT"
+method="POST"
+>
+<input type="text" name="college" placeholder="College" required />
+<input type="text" name="emailID" placeholder="email-id" required />
+<input type="number" name="phone" placeholder="Phone" required />
+<button type="submit" class="update-btn">Update</button>
 </form>
-<%})%>
+          
+        </div>  
+      </div>
+        
+      </div>
+    </section>
+    
+  </body>
+</html>

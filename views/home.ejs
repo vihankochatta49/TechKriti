@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Techkriti</title>
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+      }
+
+      body {
+        background-color: #f2f2f2;
+        font-family: sans-serif;
+      }
+
+      .top {
+        height: 100vh !important;
+        background-image: url("https://i.pinimg.com/736x/6e/5a/9b/6e5a9b7514899500000d31e685c3e0a3.jpg");
+      }
+      .nav {
+        position: fixed;
+        right: 0;
+        left: 0;
+        max-width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 15px 2px 2px white;
+        border-bottom: 3px solid black;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 10px;
+        height: 50px;
+      }
+
+      .intro {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+
+      .head {
+        font-size: 2.2rem;
+        color: #fff;
+        font-weight: 600;
+        font-family: monospace;
+        margin-left: 15px;
+      }
+
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .profile {
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.2rem;
+        margin-left: 30px;
+      }
+
+      .profile:hover {
+        color: gold;
+        text-decoration: underline;
+      }
+
+      .blogs {
+        display: grid;
+        grid-template-columns: auto;
+        align-content: start;
+        justify-content: center;
+        flex-direction: column;
+        padding: 10px 0px 20px;
+        margin: 0px 25px;
+      }
+
+      .bai {
+        position: relative;
+        min-width: 600px;
+        max-width: 800px;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 15px;
+        margin-top: 25px;
+        border: 2px solid gold;
+        border-radius: 10px;
+        box-sizing: border-box;
+        box-shadow: 0 15px 35px rgb(50 50 93 / 10%), 0 5px 15px rgb(0 0 0 / 7%) !important;
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      .blog {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .written-by {
+        display: flex;
+        font-size: 14px;
+        align-items: center;
+        margin-bottom: 15px;
+        font-family: monospace;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .head1 {
+        width: 85%;
+        margin-bottom: 10px;
+        color: white;
+        font-size: 1.8em;
+        word-spacing: -5px;
+        font-family: monospace;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .head1:hover {
+        text-decoration: underline;
+      }
+
+      .date {
+        color: wheat;
+        margin: 3px 0px 8px;
+        font-size: 0.7rem;
+      }
+
+      .para {
+        color: white;
+        font-size: 1.2em;
+        margin: 10px 0px;
+      }
+
+      .like {
+        font-size: 1rem;
+        margin-top: 10px;
+        color: white;
+      }
+
+      .about-devs {
+        z-index: 1050;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        opacity: 0;
+        transform: translate(-50%, -50%);
+        background-image: linear-gradient(to bottom right, #f5365c, #fb6340);
+        display: none;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .person1 {
+        margin: 25px;
+        color: white;
+        text-align: center;
+      }
+
+      .photo {
+        height: 100px;
+        width: 100px;
+        border-radius: 100%;
+      }
+
+      .blur {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .appear {
+        display: flex;
+        opacity: 1 !important;
+      }
+
+      .cross {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+      }
+
+      .cross1 {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        cursor: pointer;
+      }
+
+      .cross2 {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        cursor: pointer;
+      }
+
+      .footer {
+        color: grey;
+        text-decoration: none;
+      }
+
+      .footer:hover {
+        color: black;
+      }
+
+      .container {
+        height: 100vh;
+        width: 100vw;
+        max-height: 800px;
+        max-width: 1280px;
+        min-height: 600px;
+        min-width: 1000px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 0 auto;
+      }
+      .border {
+        height: 369px;
+        width: 290px;
+        background: transparent;
+        border-radius: 10px;
+        transition: border 1s;
+        position: relative;
+      }
+      .border:hover {
+        border: 1px solid #fff;
+      }
+      .card {
+        height: 379px;
+        width: 300px;
+        background: #808080;
+        border-radius: 10px;
+        transition: background 0.8s;
+        overflow: hidden;
+        background: #000;
+        box-shadow: 0 70px 63px -60px #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+      .card0 {
+        background: url("https://i.pinimg.com/736x/8f/a0/51/8fa051251f5ac2d0b756027089fbffde--terry-o-neill-al-pacino.jpg")
+          center center no-repeat;
+        background-size: 300px;
+      }
+      .card0:hover {
+        background: url("https://i.pinimg.com/736x/8f/a0/51/8fa051251f5ac2d0b756027089fbffde--terry-o-neill-al-pacino.jpg")
+          left center no-repeat;
+        background-size: 600px;
+      }
+      .card0:hover h2 {
+        opacity: 1;
+      }
+      .card0:hover .fab {
+        opacity: 1;
+      }
+      .card1 {
+        background: url("https://i.pinimg.com/originals/28/d2/e6/28d2e684e7859a0dd17fbd0cea00f8a9.jpg")
+          center center no-repeat;
+        background-size: 300px;
+      }
+      .card1:hover {
+        background: url("https://i.pinimg.com/originals/28/d2/e6/28d2e684e7859a0dd17fbd0cea00f8a9.jpg")
+          left center no-repeat;
+        background-size: 600px;
+      }
+      .card1:hover h2 {
+        opacity: 1;
+      }
+      .card1:hover .fab {
+        opacity: 1;
+      }
+      .card2 {
+        background: url("https://i.pinimg.com/originals/ee/85/08/ee850842e68cfcf6e3943c048f45c6d1.jpg")
+          center center no-repeat;
+        background-size: 300px;
+      }
+      .card2:hover {
+        background: url("https://i.pinimg.com/originals/ee/85/08/ee850842e68cfcf6e3943c048f45c6d1.jpg")
+          left center no-repeat;
+        background-size: 600px;
+      }
+      .card2:hover h2 {
+        opacity: 1;
+      }
+      .card2:hover .fab {
+        opacity: 1;
+      }
+      h2 {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #fff;
+        margin: 20px;
+        opacity: 0;
+        transition: opacity 1s;
+      }
+      .fab {
+        opacity: 0;
+        transition: opacity 1s;
+      }
+      .icons {
+        position: absolute;
+        fill: #fff;
+        color: #fff;
+        height: 130px;
+        top: 226px;
+        width: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+      }
+
+      @media screen and (max-width: 800px) {
+        .plus {
+          right: 5px;
+        }
+
+        section {
+          overflow: auto;
+          height: auto !important;
+        }
+        .head {
+          font-size: 1.2rem;
+        }
+
+        .profile {
+          font-size: 1.2rem;
+          margin-left: 0px;
+        }
+
+        #profile {
+          display: none;
+        }
+
+        .intro {
+          text-align: center;
+        }
+        .blogs {
+          padding: 10px 10px 20px;
+          width: auto;
+        }
+
+        .homewrite {
+          font-size: 2em !important;
+        }
+
+        .bai {
+          padding: 15px 10px;
+          max-width: 100%;
+          min-width: 300px;
+        }
+
+        .blog {
+          max-width: 100%;
+          width: 100%;
+          flex-direction: column;
+        }
+
+        .blog img {
+          margin: auto !important;
+          padding: 10px;
+        }
+        .footer {
+          font-size: 0.8em;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="top">
+      <nav class="nav" id="nav">
+        <h1 class="head">CAMPUS AMBASSADOR</h1>
+        <div class="dropdown" style="margin-right: 15px">
+          <a class="profile" id="profile" href="#home">Home</a>
+          <a class="profile" id="profile" href="#register">Register</a>
+          <a class="profile" id="profile" href="#whyca">Why CA?</a>
+          <a class="profile" id="profile" href="#responsibilities"
+            >Responsibilities</a
+          >
+          <a class="profile" id="profile" href="#aboutus">About Us</a>
+          <a class="profile" id="profile" href="#contactus">Contact Us</a>
+        </div>
+      </nav>
+      <div class="intro" id="home">
+        <img
+          src="https://ca.techkriti.org/assets/images/ca-22-logo.png"
+          width="320px"
+          height="auto"
+        />
+        <h1
+          style="
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #fff;
+            text-align: center;
+            margin-top: 5px;
+          "
+        >
+          Represent your college in<br />
+          Asia's Largest Technical and Entrepreneurial Festival
+        </h1>
+      </div>
+    </section>
+    <!-- About us -->
+    <section
+      style="
+        flex-direction: column;
+        background-color: #1c1c1c;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      "
+      id="aboutus"
+    >
+      <h1
+        class="homewrite"
+        style="
+          font-size: 45px;
+          margin-bottom: 15px;
+          font-family: monospace;
+          color: gold;
+        "
+      >
+        About Us
+      </h1>
+      <div
+        style="
+          text-align: JUSTIFY;
+          margin-left: auto;
+          margin-right: auto;
+          width: 75%;
+          color: #cbc4c4;
+          font-size: 19px;
+        "
+      >
+        Techkriti is the annual inter-collegiate Technical and Entrepreneurship
+        festival organized by the students of IIT Kanpur. Techkriti is a
+        non-profit organization which was launched in 1995 with the aim of
+        developing interest and encouraging innovation in technology among
+        students of India. Indian Institute of Technology Kanpur, widely
+        celebrated as a centre of academic excellence, is proud to announce the
+        28th edition of its Technological and Entrepreneurial Festival,
+        Techkriti. Over time, Techkriti has firmly established its reputation as
+        one of the largest technical festivals in Asia, igniting the passion
+        within budding individuals and providing a platform for them to showcase
+        their skills. Innovation and perseverance form the forefront of this
+        blockbuster event, with social welfare also getting the importance it
+        deserves. Every year we impute ambassadors from different colleges
+        throughout the country, whose main responsibility is to publicize
+        Techkriti, in and out of his/her college, while giving them the
+        opportunity to develop their organizational and management skills.
+      </div>
+    </section>
+    <!-- why ca -->
+    <section
+      style="
+        flex-direction: column;
+        background-color: #101820;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      "
+      id="whyca"
+    >
+      <h1
+        class="homewrite"
+        style="
+          font-size: 45px;
+          margin-bottom: 15px;
+          font-family: monospace;
+          color: gold;
+        "
+      >
+        Why CA?
+      </h1>
+      <div
+        style="
+          text-align: JUSTIFY;
+          margin-left: auto;
+          margin-right: auto;
+          line-height: 35px;
+          color: #cbc4c4;
+          font-size: 19px;
+          width: 75%;
+        "
+      >
+        Golden opportunity to witness the grandeur of Techkriti in one of the
+        most renowned and prestigious institutions of the country, IIT Kanpur
+        <br />
+        Excellent platform to sharpen your Communication and Technical skills
+        <br />
+        Be a part of national level event promotion and brand management
+        <br />
+        Chance to organize National Level Competitions in your college
+        <br />
+        Form a valuable network with thousands of brilliant like-minded students
+        from all across the country
+        <br />
+        An easy way to get acquainted with ever-changing trends of the Technical
+        and Entrepreneurial World
+        <br />
+        Opportunity to keep abreast with cutting - edge technologies from IIT
+        Kanpur
+      </div>
+    </section>
+    <!-- responsibilities -->
+    <section
+      style="
+        flex-direction: column;
+        background-color: #1c1c1c;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      "
+      id="responsibilities"
+    >
+      <h1
+        class="homewrite"
+        style="
+          font-size: 45px;
+          margin-bottom: 15px;
+          font-family: monospace;
+          color: gold;
+        "
+      >
+        Responsibilities
+      </h1>
+      <div
+        style="
+          text-align: JUSTIFY;
+          margin-left: auto;
+          margin-right: auto;
+          width: 75%;
+          color: #cbc4c4;
+          font-size: 19px;
+        "
+      >
+        <b>Coordination</b>
+        The responsibilities of CAs include coordinating with the various
+        participating colleges With the help of Techkriti, CAs organize
+        workshops and events in their respective colleges They are thus the
+        point of contact between Techkriti and respective college
+        administrations
+        <br />
+        <br />
+        <b>College Publicity</b>
+        A campus ambassador also helps in publicising Techkriti, and ensuring
+        participation of the respective campus community
+        <br />
+        <br />
+        <b>On Social Media</b>
+        CAs also have to promote Techkriti through the social media platform by
+        publicizing its events on various social media channels like Facebook,
+        Twitter, Instagram, etc. utilising their social media network for the
+        growth of Techkriti 22 Occasionally, based on the skills provided in the
+        registration form, some festival tasks may be assigned to the CAs
+        <br />
+        <br />
+        <b>Through Blogs</b>
+        A campus ambassador also improves his/her writing skills through our
+        blog series, in which he/she may give thoughts about anything for
+        publishing on Techkriti official Facebook, Instagram, Twitter, and other
+        social media apps.
+      </div>
+    </section>
+    <section
+      style="
+        flex-direction: column;
+        background-color: #101820;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      "
+      id="register"
+    >
+      <h1
+        class="homewrite"
+        style="
+          font-size: 45px;
+          margin-bottom: 15px;
+          font-family: monospace;
+          color: gold;
+        "
+      >
+        Registration
+      </h1>
+      <div
+        style="
+          text-align: JUSTIFY;
+          margin-left: auto;
+          margin-right: auto;
+          width: 75%;
+          color: #cbc4c4;
+          font-size: 19px;
+        "
+      >
+        <b>Registration</b> <br />
+        Process The campus ambassador program has been posted on Internshala and
+        can be applied on the given link. After applying from internshala, you
+        will have a telephonic session which will inform you of your
+        responsibilities to a greater depth.
+        <br />
+        <br />
+        <b>Eligibility</b> <br />
+        The only eligibility criteria is that you should have a valid college ID
+        card. There are no specific constraints on year in which you study, if
+        you are a resourceful person it will surely add up your chances to be
+        one of the top campus ambassadors.
+      </div>
+      <a
+        href="/register"
+        style="
+          padding: 12px;
+          border-radius: 10px;
+          color: white;
+          font-size: 20px;
+          text-decoration: none;
+          margin-top: 15px;
+          background-color: #4fa60b;
+        "
+        >Register</a
+      >
+    </section>
+    <!--COntact us-->
+    <section
+      style="
+        flex-direction: column;
+        background-color: #1c1c1c;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      "
+      id="contactus"
+    >
+      <div class="container">
+        <div class="card card0">
+          <div class="border">
+            <h2>Al Pacino</h2>
+            <div class="icons">
+              <i class="fab fa-codepen" aria-hidden="true"></i>
+              <i class="fab fa-instagram" aria-hidden="true"></i>
+              <i class="fab fa-dribbble" aria-hidden="true"></i>
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+              <i class="fab fa-facebook" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+        <div class="card card1">
+          <div class="border">
+            <h2>Ben Stiller</h2>
+            <div class="icons">
+              <i class="fab fa-codepen" aria-hidden="true"></i>
+              <i class="fab fa-instagram" aria-hidden="true"></i>
+              <i class="fab fa-dribbble" aria-hidden="true"></i>
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+              <i class="fab fa-facebook" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+        <div class="card card2">
+          <div class="border">
+            <h2>Patrick Stewart</h2>
+            <div class="icons">
+              <i class="fab fa-codepen" aria-hidden="true"></i>
+              <i class="fab fa-instagram" aria-hidden="true"></i>
+              <i class="fab fa-dribbble" aria-hidden="true"></i>
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+              <i class="fab fa-facebook" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

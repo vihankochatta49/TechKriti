@@ -106,7 +106,7 @@ app.use("/", require("./routes/route.js"));
 
 //route for home page
 app.get("/", (req, res) => {
-  res.render("register");
+  res.render("home");
 });
 
 //route for main page

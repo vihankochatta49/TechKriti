@@ -1,17 +1,265 @@
-<a href="/profile/<%= profile.name %>/<%= profile.id %>">Profile</a>
-<% events.forEach(function(e) {%>
-<h1><%=e.title%></h1>
-<h3>Points: <%=e.points%></h3>
-<h3>Start-Date: <%=e.startedAt%></h3>
-<h3>End-Date: <%=e.endedAt%></h3>
-<p>Description: <%=e.description%></p>
-<form
-  action="/save/<%= profile.slugName %>/<%= e.title %>"
-  method="POST"
-  enctype="multipart/form-data"
->
-  <input type="file" name="images" />
-  <button type="submit">Upload</button>
-</form>
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog site</title>
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+      }
 
-<%}) %>
+      body {
+        background-image: url("https://i.pinimg.com/736x/6e/5a/9b/6e5a9b7514899500000d31e685c3e0a3.jpg");
+        font-family: sans-serif;
+      }
+
+      .nav {
+        max-width: 100%;
+        display: flex;
+        background-color: rgba(0,0,0,0.85);
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 15px 2px 2px gold;
+        padding: 10px;
+        height: 50px;
+      }
+
+      .head {
+        font-size: 2.2rem;
+        color: #fff;
+        font-weight: 600;
+        font-family: monospace;
+        margin-left: 15px;
+      }
+
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .profile {
+        color: gold;
+        text-decoration: none;
+        font-size: 2.2rem;
+        margin-left: 10px;
+      }
+
+      .profile:hover {
+        color: #7a7893;
+      }
+
+      .blogs {
+        display: grid;
+        grid-template-columns: auto;
+        align-content: start;
+        justify-content: center;
+        flex-direction: column;
+        padding: 10px 0px 20px;
+        margin: 0px 25px;
+      }
+
+      .bai {
+        position: relative;
+        min-width: 600px;
+        max-width: 800px;
+        background-color: rgba(0,0,0,0.85);
+        padding: 15px;
+        margin-top: 25px;
+        border: 2px solid gold;
+        border-radius: 10px;
+        box-sizing: border-box;
+        box-shadow: 0 15px 35px rgb(50 50 93 / 10%), 0 5px 15px rgb(0 0 0 / 7%) !important;
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      .blog {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        /* align-items: start; */
+      }
+
+      .written-by {
+        display: flex;
+        font-size: 14px;
+        align-items: center;
+        margin-bottom: 15px;
+        font-family: monospace;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .head1 {
+        width: 85%;
+        margin-bottom: 10px;
+        color: white;
+        font-size: 1.8em;
+        word-spacing: -5px;
+        font-family: monospace;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .date {
+        color: white;
+        margin: 3px 0px 8px;
+        font-size: 1rem;
+      }
+
+      .para {
+        color: #d7d7d7;
+        font-size: 1.2em;
+        margin: 10px 0px;
+      }
+
+      .upload-btn {
+        background: black;
+        padding: 10px 20px;
+        font-size: 1.2rem;
+        border: solid 2px gold;
+        border-radius: 10px;
+        color: white;
+      }
+
+      .upload-btn:hover {
+        color: white;
+        border: 2px solid white;
+        text-decoration: underline;
+        background-color: rgb(32, 117, 32);
+      }
+      .msg {
+        color: green;
+        font-size: 1.2em;
+        margin-top: 10px;
+      }
+
+      @media screen and (max-width: 800px) {
+        .plus {
+          right: 5px;
+        }
+
+        .head {
+          font-size: 2rem;
+          margin-left: 0px;
+        }
+
+        .blogs {
+          padding: 10px 10px 20px;
+          width: auto;
+        }
+
+        .bai {
+          padding: 15px 10px;
+          max-width: 100%;
+          min-width: 300px;
+        }
+
+        .blog {
+          max-width: 100%;
+          width: 100%;
+          flex-direction: column;
+        }
+
+        .blog img {
+          margin: auto !important;
+          padding: 10px;
+        }
+
+        .protfolio {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="nav">
+      <h1 class="head">CAMPUS AMBASSADOR</h1>
+      <div class="dropdown" style="margin-right: 15px">
+        <a class="profile" href="/profile/<%= profile.name %>/<%= profile.id %>"
+          ><i class="far fa-user"></i
+        ></a>
+      </div>
+    </nav>
+    
+    <section
+      style="display: flex; justify-content: flex-end;"
+    >
+      <div class="blogs">
+        <!-- all articles -->
+
+        <% events.forEach(function(e) {%>
+        <div class="bai">
+          <!-- single article -->
+          <div class="blog">
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+              "
+            >
+              <!--author name-->
+              <div>
+                <!-- title -->
+                <p class="head1"><%= e.title %></p>                >
+                
+                <!-- date -->
+                <p class="date"><b>Points:</b> <%= e.points %></p>
+                <p class="date"><b>Start-date:</b> <%= e.startedAt %></p>
+                <p class="date"><b>End-date:</b> <%= e.endedAt %></p>
+                <!-- description -->
+                <p class="para"><%= e.description %></p>
+                
+    <form
+    action="/save/<%= profile.slugName %>/<%= e.title %>"
+    method="POST"
+    enctype="multipart/form-data"
+  >
+    <input type="file" name="images" class="upload-btn" style="font-size: 1rem;"/>
+    <button type="submit" class="upload-btn">Upload</button>
+  </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <%})%>
+      </div>
+      <div>
+
+      </div>
+        
+      </div>
+    </section>
+    <script>
+      function likePost(id) {
+        var totalLikes = document.getElementById(`${id}`);
+        fetch(`/like/post/${id}`, {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: {
+            postId: id,
+          },
+        })
+          .then((res) => res.json())
+          .then((result) => {
+            totalLikes.innerHTML = result.likes;
+          });
+      }
+    </script>
+  </body>
+</html>
