@@ -10,7 +10,7 @@ const userDb = require("./routes/registerModels");
 const eventsDb = require("./routes/eventModel");
 const imageDb = require("./routes/models");
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 //for authentication
 require("./config/passport")(passport);

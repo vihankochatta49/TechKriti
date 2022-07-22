@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Techkriti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"></link>
+
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+      }
+      .navbar {
+        background-color: black;
+        height: 80px;
+        font-size: 1.2rem;
+        position: sticky;
+        top: 0;
+        z-index: 999;
+      }
+
+      #button {
+        color: white;
+      }
+
+      .navbar-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 80px;
+        max-width: 1500px;
+      }
+
+      .navbar-logo {
+        color: #fff;
+        justify-self: start;
+        margin-left: 30px;
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 2rem;
+        display: flex;
+        align-items: center;
+      }
+      .icon {
+        content: url("../../assets/images/logo.png");
+        height: 150px;
+        width: 300px;
+        color: #fff;
+      }
+
+      .nav-menu {
+        display: grid;
+        grid-template-columns: repeat(10, auto);
+        grid-gap: 10px;
+        list-style: none;
+        text-align: center;
+        width: 60vw;
+        justify-content: end;
+        margin-right: 2rem;
+      }
+
+      .nav-item {
+        height: 80px;
+      }
+
+      .nav-links {
+        color: #fff;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        height: 100%;
+      }
+
+      .nav-links:hover {
+        border-bottom: 4px solid #fff;
+        transition: all 0.2s ease-out;
+      }
+
+      .fa-bars {
+        color: #fff;
+      }
+
+      .nav-links-mobile {
+        display: none;
+      }
+
+      .menu-icon {
+        display: none;
+      }
+
+      @media screen and (max-width: 960px) {
+        .NavbarItems {
+          position: relative;
+        }
+
+        .nav-menu {
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          height: 90vh;
+          position: absolute;
+          top: 80px;
+          left: -100%;
+          opacity: 1;
+          transition: all 0.5s ease;
+        }
+
+        .nav-menu.active {
+          background: #242222;
+          left: 0;
+          opacity: 1;
+          transition: all 0.5s ease;
+          z-index: 1;
+        }
+
+        .nav-links {
+          text-align: center;
+          padding: 2rem;
+          width: 100%;
+          display: table;
+        }
+
+        .nav-links:hover {
+          background-color: #fff;
+          color: #242424;
+          border-radius: 0;
+        }
+
+        .navbar-logo {
+          position: absolute;
+          top: 0;
+          left: 0;
+          transform: translate(25%, 50%);
+        }
+
+        .menu-icon {
+          display: block;
+          position: absolute;
+          top: 0;
+          right: 0;
+          transform: translate(-100%, 60%);
+          font-size: 1.8rem;
+          cursor: pointer;
+        }
+
+        .fa-times {
+          color: #fff;
+          font-size: 2rem;
+        }
+
+        .nav-links-mobile {
+          display: block;
+          text-align: center;
+          margin: 2rem auto;
+          border-radius: 4px;
+          width: 80%;
+          text-decoration: none;
+          font-size: 1.5rem;
+          background-color: transparent;
+          color: #fff;
+          padding: 14px 20px;
+          border: 1px solid #fff;
+          transition: all 0.3s ease-out;
+        }
+
+        .nav-links-mobile:hover {
+          background: #fff;
+          color: #242424;
+          transition: 250ms;
+        }
+      }
+      .container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background: #1c1d21
+  }
+  
+  .container .card {
+    position: relative;
+    width: 300px;
+    height: 350px;
+    background: #000;
+    margin: 3%;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .container .card .content {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0.7;
+    transition: 0.5s;
+  }
+  
+  .container .card:hover .content {
+    opacity: 1;
+    
+    transform: translateY(-20px);
+  }
+  
+  .container .card .content .imgBx {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 10px solid rgba(255, 255, 255, 0.5);
+  }
+  
+  .container .card .content .imgBx img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .container .card .content .contentBx h3 {
+    color: #4fb3c5;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+    font-size: 15px;
+    text-align: center;
+    margin: 20px 0 10px;
+    line-height: 1.1em;
+    background-color: transparent;
+  }
+  
+  .container .card .content .contentBx h3 span {
+    color: #fff;
+    font-size: 12px;
+    font-weight: 300;
+    text-transform: initial;
+  }
+  
+  .container .card .sci {
+    position: absolute;
+    bottom: 50px;
+    display: flex;
+  }
+  
+  .container .card .sci li {
+    list-style: none;
+    margin: 0 10px;
+    transform: translateY(40px);
+    transition: 0.5s;
+    opacity: 0;
+    transition-delay: calc(0.1s * var(--i));
+  }
+  
+  .container .card:hover .sci li {
+    transform: translateY(0px);
+    
+    opacity: 1;
+  }
+  
+  .container .card .sci li a {
+    color: #fff;
+    font-size: 24px;
+  }
+
+  .sci{
+    margin-right: 10%;
+  }
+
+
+      </style>
+      </head>
+      <body>
+        <nav class="navbar">
+            <div class="navbar-container">
+              <h1 style="color: white; margin-left: 10px">Campus Ambassador</h1>
+              <div style="display: flex">
+                <a href="/" class="nav-links">Home</a>
+                <a href="#" class="nav-links">Details</a>
+                <a href="#" class="nav-links">Impetus</a>
+                <a href="/incentives" class="nav-links">Incentives</a>
+                <a href="/contactus" class="nav-links">Contact-us</a>
+                <a href="/register" class="nav-links">Register</a>
+              </div>
+            </div>
+          </nav>
+          <div class="container">
+          <% persons.map(function(p){%> 
+          <div class="card">
+            <div class="content">
+              <div class="imgBx">
+                <img
+                  src="https://icon-library.com/images/person-png-icon/person-png-icon-29.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="contentBx">
+                <h3>
+                  <%=p.name%>
+                  <br />
+                  <span><%=p.pos%></span>
+                  <br />
+                  <span><%=p.mob%></span>
+                </h3>
+              </div>
+            </div>
+            <br></br>
+            <br></br>
+          </div>
+          <%})%>
+        </div>
+      </body>
+      </html>

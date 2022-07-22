@@ -1,0 +1,275 @@
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Techkriti</title>
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Fira+Sans&family=Ubuntu:wght@300&family=Varela+Round&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Fira+Sans&family=Source+Sans+Pro:wght@300&family=Ubuntu:wght@300&family=Varela+Round&display=swap");
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .navbar {
+      background-color: black;
+      height: 80px;
+      font-size: 1.2rem;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    #button {
+      color: white;
+    }
+
+    .navbar-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+      max-width: 1500px;
+    }
+
+    .navbar-logo {
+      color: #fff;
+      justify-self: start;
+      margin-left: 30px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+    }
+    .icon {
+      content: url("../../assets/images/logo.png");
+      height: 150px;
+      width: 300px;
+      color: #fff;
+    }
+
+    .nav-menu {
+      display: grid;
+      grid-template-columns: repeat(10, auto);
+      grid-gap: 10px;
+      list-style: none;
+      text-align: center;
+      width: 60vw;
+      justify-content: end;
+      margin-right: 2rem;
+    }
+
+    .nav-item {
+      height: 80px;
+    }
+
+    .nav-links {
+      color: #fff;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      height: 100%;
+    }
+
+    .nav-links:hover {
+      border-bottom: 4px solid #fff;
+      transition: all 0.2s ease-out;
+    }
+
+    .fa-bars {
+      color: #fff;
+    }
+
+    .nav-links-mobile {
+      display: none;
+    }
+
+    .menu-icon {
+      display: none;
+    }
+
+    @media screen and (max-width: 960px) {
+      .NavbarItems {
+        position: relative;
+      }
+
+      .nav-menu {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 90vh;
+        position: absolute;
+        top: 80px;
+        left: -100%;
+        opacity: 1;
+        transition: all 0.5s ease;
+      }
+
+      .nav-menu.active {
+        background: #242222;
+        left: 0;
+        opacity: 1;
+        transition: all 0.5s ease;
+        z-index: 1;
+      }
+
+      .nav-links {
+        text-align: center;
+        padding: 2rem;
+        width: 100%;
+        display: table;
+      }
+
+      .nav-links:hover {
+        background-color: #fff;
+        color: #242424;
+        border-radius: 0;
+      }
+
+      .navbar-logo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(25%, 50%);
+      }
+
+      .menu-icon {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(-100%, 60%);
+        font-size: 1.8rem;
+        cursor: pointer;
+      }
+
+      .fa-times {
+        color: #fff;
+        font-size: 2rem;
+      }
+
+      .nav-links-mobile {
+        display: block;
+        text-align: center;
+        margin: 2rem auto;
+        border-radius: 4px;
+        width: 80%;
+        text-decoration: none;
+        font-size: 1.5rem;
+        background-color: transparent;
+        color: #fff;
+        padding: 14px 20px;
+        border: 1px solid #fff;
+        transition: all 0.3s ease-out;
+      }
+
+      .nav-links-mobile:hover {
+        background: #fff;
+        color: #242424;
+        transition: 250ms;
+      }
+    }
+
+    .background {
+      background-color: #1c1d21;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-evenly;
+      padding: 10px 65px;
+    }
+
+    .box2 {
+      width: 280px;
+      height: 200px;
+      margin: 16px;
+      padding: 16px;
+      border-radius: 2px;
+      background-color: #1c1d21;
+      color: #fcfcff;
+      font-weight: 500;
+      box-shadow: 0 2px 4px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-evenly;
+    }
+
+    .box2 p {
+      color: white;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+
+    .box2 i {
+      font-size: 2rem;
+      color: #6195ff;
+    }
+  </style>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-container">
+        <h1 style="color: white; margin-left: 10px">Campus Ambassador</h1>
+        <div style="display: flex">
+          <a href="/" class="nav-links">Home</a>
+          <a href="#" class="nav-links">Details</a>
+          <a href="#" class="nav-links">Impetus</a>
+          <a href="/incentives" class="nav-links">Incentives</a>
+          <a href="/contactus" class="nav-links">Contact-us</a>
+          <a href="/register" class="nav-links">Register</a>
+        </div>
+      </div>
+    </nav>
+    <div class="background">
+      <div class="box2">
+        <i class="fas fa-certificate" aria-hidden="true"></i>
+        <p>
+          A Certificate of Appreciation undersigned by Techkriti’23 IIT Kanpur
+          to top 100 CA's
+        </p>
+      </div>
+      <div class="box2">
+        <i class="fas fa-chalkboard-teacher" aria-hidden="true"></i>
+        <p>
+          Top Ambassadors will get a chance to attend Workshops at Techkriti’23
+          IITK
+        </p>
+      </div>
+      <div class="box2">
+        <i class="fas fa-award" aria-hidden="true"></i>
+        <p>
+          Top campus ambassadors will be felicitated with Special Appreciation
+          Award
+        </p>
+      </div>
+
+      <div class="box2">
+        <i class="fas fa-file-signature" aria-hidden="true"></i>
+        <p>
+          Recognition in the form of name integration on the Techkriti’23
+          Website
+        </p>
+      </div>
+      <div class="box2">
+        <i class="fab fa-facebook" aria-hidden="true"></i>
+        <p>
+          Get to become a part of Campus Ambassador diaries through Techkriti
+          Facebook Page
+        </p>
+      </div>
+    </div>
+    ;
+  </body>
+</html>
+;

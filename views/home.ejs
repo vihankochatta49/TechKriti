@@ -10,6 +10,13 @@
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Techkriti</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"></link>
+
     <style>
       * {
         margin: 0px;
@@ -17,687 +24,710 @@
       }
 
       body {
-        background-color: #f2f2f2;
         font-family: sans-serif;
       }
 
-      .top {
-        height: 100vh !important;
-        padding: 0px;
-        background-image: url("https://media.istockphoto.com/photos/product-showcase-with-spotlight-black-studio-room-background-use-as-picture-id1304681590?b=1&k=20&m=1304681590&s=170667a&w=0&h=UlTsdL4KIRPcxbhgOrsIoE0BNNE6KpgxVhRD3gz_fV0=");
+      .navbar {
+        background-color: black;
+        height: 80px;
+        font-size: 1.2rem;
+        position: sticky;
+        top: 0;
+        z-index: 999;
+      }
+
+      #button {
+        color: white;
+      }
+
+      .navbar-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 1500px;
+      }
+
+      .navbar-logo {
+        color: #fff;
+        justify-self: start;
+        margin-left: 30px;
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 2rem;
+        display: flex;
+        align-items: center;
+      }
+      .icon {
+        content: url("../../assets/images/logo.png");
+        height: 150px;
+        width: 300px;
+        color: #fff;
+      }
+
+      .nav-menu {
+        display: grid;
+        grid-template-columns: repeat(10, auto);
+        grid-gap: 10px;
+        list-style: none;
+        text-align: center;
+        width: 60vw;
+        justify-content: end;
+        margin-right: 2rem;
+      }
+
+      .nav-item {
+        height: 80px;
+      }
+
+      .nav-links {
+        color: #fff;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        height: 100%;
+      }
+
+      .nav-links:hover {
+        border-bottom: 4px solid #fff;
+        transition: all 0.2s ease-out;
+      }
+
+      .fa-bars {
+        color: #fff;
+      }
+
+      .nav-links-mobile {
+        display: none;
+      }
+
+      .menu-icon {
+        display: none;
+      }
+
+      @media screen and (max-width: 960px) {
+        .NavbarItems {
+          position: relative;
+        }
+
+        .nav-menu {
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          height: 90vh;
+          position: absolute;
+          top: 80px;
+          left: -100%;
+          opacity: 1;
+          transition: all 0.5s ease;
+        }
+
+        .nav-menu.active {
+          background: #242222;
+          left: 0;
+          opacity: 1;
+          transition: all 0.5s ease;
+          z-index: 1;
+        }
+
+        .nav-links {
+          text-align: center;
+          padding: 2rem;
+          width: 100%;
+          display: table;
+        }
+
+        .nav-links:hover {
+          background-color: #fff;
+          color: #242424;
+          border-radius: 0;
+        }
+
+        .navbar-logo {
+          position: absolute;
+          top: 0;
+          left: 0;
+          transform: translate(25%, 50%);
+        }
+
+        .menu-icon {
+          display: block;
+          position: absolute;
+          top: 0;
+          right: 0;
+          transform: translate(-100%, 60%);
+          font-size: 1.8rem;
+          cursor: pointer;
+        }
+
+        .fa-times {
+          color: #fff;
+          font-size: 2rem;
+        }
+
+        .nav-links-mobile {
+          display: block;
+          text-align: center;
+          margin: 2rem auto;
+          border-radius: 4px;
+          width: 80%;
+          text-decoration: none;
+          font-size: 1.5rem;
+          background-color: transparent;
+          color: #fff;
+          padding: 14px 20px;
+          border: 1px solid #fff;
+          transition: all 0.3s ease-out;
+        }
+
+        .nav-links-mobile:hover {
+          background: #fff;
+          color: #242424;
+          transition: 250ms;
+        }
+      }
+      video {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        z-index: -1;
+      }
+
+      .hero-container {
+        background-image: url("https://ca.techkriti.org/assets/images/flicker.jpg");
+        height: 100vh;
+        background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-      }
-
-      .nav {
-        position: fixed;
-        right: 0;
-        left: 0;
-        max-width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        box-shadow: 15px 2px 2px white;
-        border-bottom: 3px solid black;
-        background-color: rgba(0, 0, 0, 0.7);
-        padding: 10px;
-        height: 50px;
-      }
-
-      .intro {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        align-items: center;
-        justify-content: center;
-        background-color: rgba(0, 0, 0, 0.7);
-      }
-
-      .head {
-        font-size: 2.2rem;
-        color: #fff;
-        font-weight: 600;
-        font-family: monospace;
-        margin-left: 15px;
-      }
-
-      .dropdown {
-        position: relative;
-        display: inline-block;
-      }
-
-      .profile {
-        color: #fff;
-        text-decoration: none;
-        font-size: 1.2rem;
-        margin-left: 30px;
-      }
-
-      .profile:hover {
-        color: gold;
-        text-decoration: underline;
-      }
-
-      .blogs {
-        display: grid;
-        grid-template-columns: auto;
-        align-content: start;
-        justify-content: center;
-        flex-direction: column;
-        padding: 10px 0px 20px;
-        margin: 0px 25px;
-      }
-
-      .bai {
-        position: relative;
-        min-width: 600px;
-        max-width: 800px;
-        background-color: rgba(0, 0, 0, 0.7);
-        padding: 15px;
-        margin-top: 25px;
-        border: 2px solid gold;
-        border-radius: 10px;
-        box-sizing: border-box;
-        box-shadow: 0 15px 35px rgb(50 50 93 / 10%), 0 5px 15px rgb(0 0 0 / 7%) !important;
-      }
-
-      img {
-        max-width: 100%;
-      }
-
-      .blog {
         width: 100%;
-        display: flex;
-        justify-content: space-between;
+      }
+      @keyframes example {
+        from {
+          margin-top: -50px;
+        }
+        to {
+          margin-top: -80px;
+        }
+      }
+      .hero-container > h1 {
+        margin-left: 300px;
+        animation-name: example;
+        animation-duration: 2s;
+
+        animation-timing-function: linear;
+        color: #000;
+        font-size: 50px;
+        margin-top: -80px;
       }
 
-      .written-by {
-        display: flex;
-        font-size: 14px;
-        align-items: center;
-        margin-bottom: 15px;
-        font-family: monospace;
-        font-weight: 600;
-        text-decoration: none;
+      .hero-container > p {
+        margin-top: 8px;
+        margin-left: 300px;
+        color: #000;
+        font-size: 32px;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
       }
 
-      .head1 {
-        width: 85%;
-        margin-bottom: 10px;
-        color: white;
-        font-size: 1.8em;
-        word-spacing: -5px;
-        font-family: monospace;
-        text-decoration: none;
-        font-weight: 600;
+      .hero-btns {
+        margin-top: 32px;
       }
 
-      .head1:hover {
-        text-decoration: underline;
+      .hero-btns .btn {
+        margin: 6px;
       }
 
-      .date {
-        color: wheat;
-        margin: 3px 0px 8px;
-        font-size: 0.7rem;
+      .fa-play-circle {
+        margin-left: 4px;
       }
 
-      .para {
-        color: white;
-        font-size: 1.2em;
-        margin: 10px 0px;
+      @media screen and (max-width: 960px) {
+        .hero-container > h1 {
+          font-size: 70px;
+          margin-top: -150px;
+        }
       }
 
-      .like {
-        font-size: 1rem;
-        margin-top: 10px;
-        color: white;
-      }
-
-      .about-devs {
-        z-index: 1050;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        opacity: 0;
-        transform: translate(-50%, -50%);
-        background-image: linear-gradient(to bottom right, #f5365c, #fb6340);
-        display: none;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .person1 {
-        margin: 25px;
-        color: white;
-        text-align: center;
-      }
-
-      .photo {
-        height: 100px;
-        width: 100px;
-        border-radius: 100%;
-      }
-
-      .blur {
-        display: none;
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-      }
-
-      .appear {
-        display: flex;
-        opacity: 1 !important;
-      }
-
-      .cross {
-        position: absolute;
-        top: 5px;
-        right: 10px;
-      }
-
-      .cross1 {
-        position: absolute;
-        top: 5px;
-        right: 10px;
-        cursor: pointer;
-      }
-
-      .cross2 {
-        position: absolute;
-        top: 5px;
-        right: 10px;
-        cursor: pointer;
-      }
-
-      .footer {
-        color: grey;
-        text-decoration: none;
-      }
-
-      .footer:hover {
-        color: black;
-      }
-
-      .container {
-        height: 100vh;
-        width: 100vw;
-        max-height: 800px;
-        max-width: 1280px;
-        min-height: 600px;
-        min-width: 1000px;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        margin: 0 auto;
-      }
-      .border {
-        height: 369px;
-        width: 290px;
-        background: transparent;
-        border-radius: 10px;
-        transition: border 1s;
-        position: relative;
-      }
-      .border:hover {
-        border: 1px solid #fff;
-      }
-      .card {
-        height: 379px;
-        width: 300px;
-        background: #808080;
-        border-radius: 10px;
-        transition: background 0.8s;
-        overflow: hidden;
-        background: #000;
-        box-shadow: 0 70px 63px -60px #000;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-      }
-      .card0 {
-        background: url("https://i.pinimg.com/736x/8f/a0/51/8fa051251f5ac2d0b756027089fbffde--terry-o-neill-al-pacino.jpg")
-          center center no-repeat;
-        background-size: 300px;
-      }
-      .card0:hover {
-        background: url("https://i.pinimg.com/736x/8f/a0/51/8fa051251f5ac2d0b756027089fbffde--terry-o-neill-al-pacino.jpg")
-          left center no-repeat;
-        background-size: 600px;
-      }
-      .card0:hover h2 {
-        opacity: 1;
-      }
-      .card0:hover .fab {
-        opacity: 1;
-      }
-      .card1 {
-        background: url("https://i.pinimg.com/originals/28/d2/e6/28d2e684e7859a0dd17fbd0cea00f8a9.jpg")
-          center center no-repeat;
-        background-size: 300px;
-      }
-      .card1:hover {
-        background: url("https://i.pinimg.com/originals/28/d2/e6/28d2e684e7859a0dd17fbd0cea00f8a9.jpg")
-          left center no-repeat;
-        background-size: 600px;
-      }
-      .card1:hover h2 {
-        opacity: 1;
-      }
-      .card1:hover .fab {
-        opacity: 1;
-      }
-      .card2 {
-        background: url("https://i.pinimg.com/originals/ee/85/08/ee850842e68cfcf6e3943c048f45c6d1.jpg")
-          center center no-repeat;
-        background-size: 300px;
-      }
-      .card2:hover {
-        background: url("https://i.pinimg.com/originals/ee/85/08/ee850842e68cfcf6e3943c048f45c6d1.jpg")
-          left center no-repeat;
-        background-size: 600px;
-      }
-      .card2:hover h2 {
-        opacity: 1;
-      }
-      .card2:hover .fab {
-        opacity: 1;
-      }
-      h2 {
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        color: #fff;
-        margin: 20px;
-        opacity: 0;
-        transition: opacity 1s;
-      }
-      .fab {
-        opacity: 0;
-        transition: opacity 1s;
-      }
-      .icons {
-        position: absolute;
-        fill: #fff;
-        color: #fff;
-        height: 130px;
-        top: 226px;
-        width: 50px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
-      }
-
-      @media screen and (max-width: 800px) {
-        .plus {
-          right: 5px;
+      @media screen and (max-width: 768px) {
+        .hero-container > h1 {
+          font-size: 50px;
+          margin-top: -100px;
         }
 
-        section {
-          overflow: auto;
-          padding: 10px;
-          height: auto !important;
-        }
-        .head {
-          font-size: 1.2rem;
+        .hero-container > p {
+          font-size: 30px;
         }
 
-        .profile {
-          font-size: 1.2rem;
-          margin-left: 0px;
+        .btn-mobile {
+          display: block;
+          text-decoration: none;
         }
 
-        #profile {
-          display: none;
-        }
-
-        .intro {
-          text-align: center;
-        }
-        .blogs {
-          padding: 10px 10px 20px;
-          width: auto;
-        }
-
-        .homewrite {
-          font-size: 2em !important;
-        }
-
-        .bai {
-          padding: 15px 10px;
-          max-width: 100%;
-          min-width: 300px;
-        }
-
-        .blog {
-          max-width: 100%;
+        .btn {
           width: 100%;
-          flex-direction: column;
-        }
-
-        .blog img {
-          margin: auto !important;
-          padding: 10px;
-        }
-        .footer {
-          font-size: 0.8em;
         }
       }
+
+      .aboutus {
+        background-color: #000;
+        padding: 50px;
+      }
+
+      .title {
+        letter-spacing: 0.3cm;
+        color: #fff;
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .text {
+        text-align: justify;
+        line-height: 0.8cm;
+        font-size: 20px;
+        color: lightgrey;
+        position: relative;
+        margin-left: 30px;
+        margin-bottom: 10px;
+      }
+.counter {
+padding-top: 40px;
+background: white;
+justify-content: space-evenly;
+display: flex;
+align-items: center;
+flex-direction: row;
+flex-flow: row;
+font-size: 25px;
+color: #fff;
+padding-bottom: 40px;
+}
+
+.counter_item {
+gap: 20px;
+display: flex;
+align-items: center;
+flex-direction: column;
+justify-content: space-evenly;
+padding-right: 10rem;
+padding-left: 10rem;
+height: 7rem;
+border-right: 2px solid grey;
+}
+
+#a {
+
+font-weight: 200;
+font-size: 35px;
+color: #4fb3c5;
+
+}
+
+p {
+font-size: 15px;
+color: black;
+font-weight: 600;
+}
+
+.footer-container {
+    background-color: #242424;
+    
+    display: flex;
+  
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+  }
+  .social-icon-link {
+    color: #fff;
+    font-size: 24px;
+  }
+  
+  .social-media {
+    height: 100px;
+    max-width: 1000px;
+    width: 100%;
+  }
+ 
+  .social-media-wrap {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto 0 auto;
+  }
+  
+  .social-icons {
+  
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: space-around;
+    align-items: center;
+    width: 200px;
+  }
+ 
+  
+  .website-rights {
+    color: #fff;
+    position: static;
+    margin-bottom: 16px;
+  }
+  
+  @media screen and (max-width: 820px) {
+    .footer-links {
+      padding-top: 2rem;
+    }
+  
+    .footer-input {
+      width: 100%;
+    }
+  
+    .btn {
+      width: 100%;
+    }
+  
+    .footer-link-wrapper {
+      flex-direction: column;
+    }
+  
+    .social-media-wrap {
+      flex-direction: column;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+  }
+
+  .testimonials{
+    margin-top: 2%;
+    padding: 0 5%;
+    font-weight: 600;
+    background-color: #1c1d21;
+    text-align: center;
+}
+
+.heading{
+    color: white;
+    font-size: 2rem !important;
+    padding-top: 10px;
+}
+
+.icon{
+    display: inline;
+    color: #e9cc2b;
+}
+
+.profile-img{
+    border-radius: 50%;
+    width: 30%;
+    padding: 5px;
+    border: 5px solid black;
+    border-spacing: 3px;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5% 1.5%;
+    background-color: #1c1d21;
+    border-width: 3px;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+    transition: 0.3s;
+    margin: 2%;
+}
+
+.card:hover{
+    border-color: #e9cc2b;
+}
+
+.card-content{
+  color: white;
+    font-weight: 500;
+    padding: 2% 5%;
+}
+
+.name{
+    color: #e9cc2b;
+    font-weight: 700;
+}
+
+.row{
+    justify-content: center;
+}
+
+.carousel-control-prev{
+    padding-right: 100px;
+}
+
+.carousel-control-next{
+    padding-left: 100px;
+}
+
+.carousel-indicators {
+    bottom:-50px;
+  }
+
+.carousel-inner {
+    margin-bottom:50px;
+ }
+ 
+ .fa-brands {
+  color: white;
+ }
     </style>
   </head>
 
   <body>
-    <section class="top">
-      <nav class="nav" id="nav">
-        <h1 class="head">CAMPUS AMBASSADOR</h1>
-        <div class="dropdown" style="margin-right: 15px">
-          <a class="profile" id="profile" href="#home">Home</a>
-          <a class="profile" id="profile" href="#aboutus">About Us</a>
-          <a class="profile" id="profile" href="#whyca">Why CA?</a>
-          <a class="profile" id="profile" href="#responsibilities"
-            >Responsibilities</a
-          >
-          <a class="profile" id="profile" href="#register">Register</a>
-          <a class="profile" id="profile" href="#contactus">Contact Us</a>
+    <nav class="navbar">
+      <div class="navbar-container">
+        <h1 style="color: white; margin-left: 10px">Campus Ambassador</h1>
+        <div style="display: flex">
+          <a href="#home" class="nav-links">Home</a>
+          <a href="#" class="nav-links">Details</a>
+          <a href="#" class="nav-links">Impetus</a>
+          <a href="/incentives" class="nav-links">Incentives</a>
+          <a href="/contactus" class="nav-links">Contact-us</a>
+          <a href="/register" class="nav-links">Register</a>
         </div>
-      </nav>
-      <div class="intro" id="home">
-        <img
-          src="https://ca.techkriti.org/assets/images/ca-22-logo.png"
-          width="320px"
-          height="auto"
-        />
-        <h1
-          style="
-            font-size: 1.2rem;
-            font-weight: 400;
-            color: #fff;
-            text-align: center;
-            margin-top: 5px;
-          "
-        >
-          Represent your college in<br />
-          Asia's Largest Technical and Entrepreneurial Festival
-        </h1>
       </div>
-    </section>
-    <!-- About us -->
-    <section
-      style="
-        flex-direction: column;
-        background-color: #1c1c1c;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      "
-      id="aboutus"
-    >
-      <h1
-        class="homewrite"
-        style="
-          font-size: 45px;
-          margin-bottom: 15px;
-          font-family: monospace;
-          color: gold;
-        "
+    </nav>
+    <div class="hero-container"></div>
+    <div class="aboutus">
+      <AnimationOnScroll
+        delay="{0}"
+        animateOnce="{true}"
+        animateIn="animate__fadeInUp"
       >
-        About Us
-      </h1>
-      <div
-        style="
-          text-align: JUSTIFY;
-          margin-left: auto;
-          margin-right: auto;
-          width: 75%;
-          color: #cbc4c4;
-          font-size: 19px;
-        "
-      >
-        Techkriti is the annual inter-collegiate Technical and Entrepreneurship
-        festival organized by the students of IIT Kanpur. Techkriti is a
-        non-profit organization which was launched in 1995 with the aim of
-        developing interest and encouraging innovation in technology among
-        students of India. Indian Institute of Technology Kanpur, widely
-        celebrated as a centre of academic excellence, is proud to announce the
-        28th edition of its Technological and Entrepreneurial Festival,
-        Techkriti. Over time, Techkriti has firmly established its reputation as
-        one of the largest technical festivals in Asia, igniting the passion
-        within budding individuals and providing a platform for them to showcase
-        their skills. Innovation and perseverance form the forefront of this
-        blockbuster event, with social welfare also getting the importance it
-        deserves. Every year we impute ambassadors from different colleges
-        throughout the country, whose main responsibility is to publicize
-        Techkriti, in and out of his/her college, while giving them the
-        opportunity to develop their organizational and management skills.
-      </div>
-    </section>
-    <!-- why ca -->
-    <section
-      style="
-        flex-direction: column;
-        background-color: #101820;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      "
-      id="whyca"
-    >
-      <h1
-        class="homewrite"
-        style="
-          font-size: 45px;
-          margin-bottom: 15px;
-          font-family: monospace;
-          color: gold;
-        "
-      >
-        Why CA?
-      </h1>
-      <div
-        style="
-          text-align: JUSTIFY;
-          margin-left: auto;
-          margin-right: auto;
-          line-height: 35px;
-          color: #cbc4c4;
-          font-size: 19px;
-          width: 75%;
-        "
-      >
-        Golden opportunity to witness the grandeur of Techkriti in one of the
-        most renowned and prestigious institutions of the country, IIT Kanpur
-        <br />
-        Excellent platform to sharpen your Communication and Technical skills
-        <br />
-        Be a part of national level event promotion and brand management
-        <br />
-        Chance to organize National Level Competitions in your college
-        <br />
-        Form a valuable network with thousands of brilliant like-minded students
-        from all across the country
-        <br />
-        An easy way to get acquainted with ever-changing trends of the Technical
-        and Entrepreneurial World
-        <br />
-        Opportunity to keep abreast with cutting - edge technologies from IIT
-        Kanpur
-      </div>
-    </section>
-    <!-- responsibilities -->
-    <section
-      style="
-        flex-direction: column;
-        background-color: #1c1c1c;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      "
-      id="responsibilities"
-    >
-      <h1
-        class="homewrite"
-        style="
-          font-size: 45px;
-          margin-bottom: 15px;
-          font-family: monospace;
-          color: gold;
-        "
-      >
-        Responsibilities
-      </h1>
-      <div
-        style="
-          text-align: JUSTIFY;
-          margin-left: auto;
-          margin-right: auto;
-          width: 75%;
-          color: #cbc4c4;
-          font-size: 19px;
-        "
-      >
-        <b>Coordination</b>
-        The responsibilities of CAs include coordinating with the various
-        participating colleges With the help of Techkriti, CAs organize
-        workshops and events in their respective colleges They are thus the
-        point of contact between Techkriti and respective college
-        administrations
-        <br />
-        <br />
-        <b>College Publicity</b>
-        A campus ambassador also helps in publicising Techkriti, and ensuring
-        participation of the respective campus community
-        <br />
-        <br />
-        <b>On Social Media</b>
-        CAs also have to promote Techkriti through the social media platform by
-        publicizing its events on various social media channels like Facebook,
-        Twitter, Instagram, etc. utilising their social media network for the
-        growth of Techkriti 22 Occasionally, based on the skills provided in the
-        registration form, some festival tasks may be assigned to the CAs
-        <br />
-        <br />
-        <b>Through Blogs</b>
-        A campus ambassador also improves his/her writing skills through our
-        blog series, in which he/she may give thoughts about anything for
-        publishing on Techkriti official Facebook, Instagram, Twitter, and other
-        social media apps.
-      </div>
-    </section>
-    <section
-      style="
-        flex-direction: column;
-        background-color: #101820;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      "
-      id="register"
-    >
-      <h1
-        class="homewrite"
-        style="
-          font-size: 45px;
-          margin-bottom: 15px;
-          font-family: monospace;
-          color: gold;
-        "
-      >
-        Registration
-      </h1>
-      <div
-        style="
-          text-align: JUSTIFY;
-          margin-left: auto;
-          margin-right: auto;
-          width: 75%;
-          color: #cbc4c4;
-          font-size: 19px;
-        "
-      >
-        <b>Registration</b> <br />
-        Process The campus ambassador program has been posted on Internshala and
-        can be applied on the given link. After applying from internshala, you
-        will have a telephonic session which will inform you of your
-        responsibilities to a greater depth.
-        <br />
-        <br />
-        <b>Eligibility</b> <br />
-        The only eligibility criteria is that you should have a valid college ID
-        card. There are no specific constraints on year in which you study, if
-        you are a resourceful person it will surely add up your chances to be
-        one of the top campus ambassadors.
-      </div>
-      <a
-        href="/register"
-        style="
-          padding: 12px;
-          border-radius: 10px;
-          color: white;
-          font-size: 20px;
-          text-decoration: none;
-          margin-top: 15px;
-          background-color: #4fa60b;
-        "
-        >Register</a
-      >
-    </section>
-    <!--COntact us-->
-    <section
-      style="
-        flex-direction: column;
-        background-color: #1c1c1c;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      "
-      id="contactus"
-    >
-      <div class="container">
-        <div class="card card0">
-          <div class="border">
-            <h2>Al Pacino</h2>
-            <div class="icons">
-              <i class="fab fa-codepen" aria-hidden="true"></i>
-              <i class="fab fa-instagram" aria-hidden="true"></i>
-              <i class="fab fa-dribbble" aria-hidden="true"></i>
-              <i class="fab fa-twitter" aria-hidden="true"></i>
-              <i class="fab fa-facebook" aria-hidden="true"></i>
+        <h1 class="title">ABOUT US</h1>
+
+        <div class="text">
+          Techkriti is the annual inter-collegiate Technical and
+          Entrepreneurship festival organized by the students of IIT Kanpur.
+          Techkriti is a non-profit organization that was founded in 1995 with
+          the purpose of fostering an interest in technology and encouraging
+          innovation among Indian students. Indian Institute of Technology
+          Kanpur, widely celebrated as a center of academic excellence, is proud
+          to announce the 28th edition of its Technological and Entrepreneurial
+          Festival, Over time, Techkriti has solidified its status as one of
+          Asia's largest technical festivals, inspiring the desire of aspiring
+          ndividuals and giving a stage for them to demonstrate their
+          abilities. Innovation and tenacity are at the heart of this
+          groundbreaking event, with social welfare also receiving the attention
+          it merits. Every year, we appoint ambassadors from various
+          institutions across the nation, whose primary task is to promote
+          Techkriti within and outside their campus, while also gaining
+          organizational and managerial experience.
+        </div>
+      </AnimationOnScroll>
+    </div>
+                <div class='counter'>
+               
+                    <ul class='counter_item' >
+                    
+                        <p >Ambassadors</p>
+                        <a id="a">2500+</a>
+
+                    </ul>
+                    
+
+                    <ul class='counter_item'>
+          
+                        <p>College</p>
+                        <a id="a">100+</a>
+                        
+                    </ul>
+                    
+
+                    <ul class='counter_item'>
+                    
+                        <p>Reach</p>
+                    <a id="a">20+</a>
+                    </ul>
+                  
+                </div>
+              </div>
+              <div class="testimonials">
+                <h1 class="heading">TESTIMONIALS</h1>
+                <hr>
+                <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                      <div class="carousel-item active" data-bs-interval="10000">
+                        <div class="row">
+                    <div class="col-lg-3 card">
+                        <img src="imgs/profile2.jpg" class="profile-img" alt="">
+                        <p class="card-content"><i class="fa-solid fa-quote-left icon fa-2x"></i>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium labore consequuntur minima sit? At, eaque minus omnis explicabo mollitia reprehenderit dolorem alias, vitae culpa neque adipisci quibusdam sequi, architecto molestiae!<i class="fa-solid fa-quote-right icon fa-2x"></i></p>
+                        <h2 class="name">John Doe</h2>
+                        <div class="contacts">
+                            <i class="fa-brands fa-instagram fa-2x"></i>
+                            <i class="fa-brands fa-facebook fa-2x"></i>
+                            <i class="fa-brands fa-linkedin fa-2x"></i>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 card">
+                        <img src="imgs/profile2.jpg" class="profile-img" alt="">
+                        <p class="card-content"><i class="fa-solid fa-quote-left icon fa-2x"></i>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium labore consequuntur minima sit? At, eaque minus omnis explicabo mollitia reprehenderit dolorem alias, vitae culpa neque adipisci quibusdam sequi, architecto molestiae!<i class="fa-solid fa-quote-right icon fa-2x"></i></p>
+                        <h2 class="name">John Doe</h2>
+                        <div class="contacts">
+                            <i class="fa-brands fa-instagram fa-2x"></i>
+                            <i class="fa-brands fa-facebook fa-2x"></i>
+                            <i class="fa-brands fa-linkedin fa-2x"></i>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 card">
+                        <img src="imgs/profile2.jpg" class="profile-img" alt="">
+                        <p class="card-content"><i class="fa-solid fa-quote-left icon fa-2x"></i>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium labore consequuntur minima sit? At, eaque minus omnis explicabo mollitia reprehenderit dolorem alias, vitae culpa neque adipisci quibusdam sequi, architecto molestiae!<i class="fa-solid fa-quote-right icon fa-2x"></i></p>
+                        <h2 class="name">John Doe</h2>
+                        <div class="contacts">
+                            <i class="fa-brands fa-instagram fa-2x"></i>
+                            <i class="fa-brands fa-facebook fa-2x"></i>
+                            <i class="fa-brands fa-linkedin fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+                      </div>
+                      <div class="carousel-item" data-bs-interval="2000">
+                        <div class="row">
+                            <div class="col-lg-3 card">
+                                <img src="imgs/profile2.jpg" class="profile-img" alt="">
+                                <p class="card-content"><i class="fa-solid fa-quote-left icon fa-2x"></i>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium labore consequuntur minima sit? At, eaque minus omnis explicabo mollitia reprehenderit dolorem alias, vitae culpa neque adipisci quibusdam sequi, architecto molestiae!<i class="fa-solid fa-quote-right icon fa-2x"></i></p>
+                                <h2 class="name">John Doe</h2>
+                                <div class="contacts">
+                                    <i class="fa-brands fa-instagram fa-2x"></i>
+                                    <i class="fa-brands fa-facebook fa-2x"></i>
+                                    <i class="fa-brands fa-linkedin fa-2x"></i>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 card">
+                                <img src="imgs/profile2.jpg" class="profile-img" alt="">
+                                <p class="card-content"><i class="fa-solid fa-quote-left icon fa-2x"></i>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium labore consequuntur minima sit? At, eaque minus omnis explicabo mollitia reprehenderit dolorem alias, vitae culpa neque adipisci quibusdam sequi, architecto molestiae!<i class="fa-solid fa-quote-right icon fa-2x"></i></p>
+                                <h2 class="name">John Doe</h2>
+                                <div class="contacts">
+                                    <i class="fa-brands fa-instagram fa-2x"></i>
+                                    <i class="fa-brands fa-facebook fa-2x"></i>
+                                    <i class="fa-brands fa-linkedin fa-2x"></i>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 card">
+                                <img src="imgs/profile2.jpg" class="profile-img" alt="">
+                                <p class="card-content"><i class="fa-solid fa-quote-left icon fa-2x"></i>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium labore consequuntur minima sit? At, eaque minus omnis explicabo mollitia reprehenderit dolorem alias, vitae culpa neque adipisci quibusdam sequi, architecto molestiae!<i class="fa-solid fa-quote-right icon fa-2x"></i></p>
+                                <h2 class="name">John Doe</h2>
+                                <div class="contacts">
+                                    <i class="fa-brands fa-instagram fa-2x"></i>
+                                    <i class="fa-brands fa-facebook fa-2x"></i>
+                                    <i class="fa-brands fa-linkedin fa-2x"></i>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-lg-3 card">
+                                <img src="imgs/profile2.jpg" class="profile-img" alt="">
+                                <p class="card-content"><i class="fa-solid fa-quote-left icon fa-2x"></i>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium labore consequuntur minima sit? At, eaque minus omnis explicabo mollitia reprehenderit dolorem alias, vitae culpa neque adipisci quibusdam sequi, architecto molestiae!<i class="fa-solid fa-quote-right icon fa-2x"></i></p>
+                                <h2 class="name">John Doe</h2>
+                                <div class="contacts">
+                                    <i class="fa-brands fa-instagram fa-2x"></i>
+                                    <i class="fa-brands fa-facebook fa-2x"></i>
+                                    <i class="fa-brands fa-linkedin fa-2x"></i>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 card">
+                                <img src="imgs/profile2.jpg" class="profile-img" alt="">
+                                <p class="card-content"><i class="fa-solid fa-quote-left icon fa-2x"></i>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium labore consequuntur minima sit? At, eaque minus omnis explicabo mollitia reprehenderit dolorem alias, vitae culpa neque adipisci quibusdam sequi, architecto molestiae!<i class="fa-solid fa-quote-right icon fa-2x"></i></p>
+                                <h2 class="name">John Doe</h2>
+                                <div class="contacts">
+                                    <i class="fa-brands fa-instagram fa-2x"></i>
+                                    <i class="fa-brands fa-facebook fa-2x"></i>
+                                    <i class="fa-brands fa-linkedin fa-2x"></i>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 card">
+                                <img src="imgs/profile2.jpg" class="profile-img" alt="">
+                                <p class="card-content"><i class="fa-solid fa-quote-left icon fa-2x"></i>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium labore consequuntur minima sit? At, eaque minus omnis explicabo mollitia reprehenderit dolorem alias, vitae culpa neque adipisci quibusdam sequi, architecto molestiae!<i class="fa-solid fa-quote-right icon fa-2x"></i></p>
+                                <h2 class="name">John Doe</h2>
+                                <div class="contacts">
+                                    <i class="fa-brands fa-instagram fa-2x"></i>
+                                    <i class="fa-brands fa-facebook fa-2x"></i>
+                                    <i class="fa-brands fa-linkedin fa-2x"></i>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
             </div>
-          </div>
-        </div>
-        <div class="card card1">
-          <div class="border">
-            <h2>Ben Stiller</h2>
-            <div class="icons">
-              <i class="fab fa-codepen" aria-hidden="true"></i>
-              <i class="fab fa-instagram" aria-hidden="true"></i>
-              <i class="fab fa-dribbble" aria-hidden="true"></i>
-              <i class="fab fa-twitter" aria-hidden="true"></i>
-              <i class="fab fa-facebook" aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
-        <div class="card card2">
-          <div class="border">
-            <h2>Patrick Stewart</h2>
-            <div class="icons">
-              <i class="fab fa-codepen" aria-hidden="true"></i>
-              <i class="fab fa-instagram" aria-hidden="true"></i>
-              <i class="fab fa-dribbble" aria-hidden="true"></i>
-              <i class="fab fa-twitter" aria-hidden="true"></i>
-              <i class="fab fa-facebook" aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        
+            <script src="https://kit.fontawesome.com/fabe41c2f7.js" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+                integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+                crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+                integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+                crossorigin="anonymous"></script>
+              <div class='footer-container'>
+                <section class='social-media'>
+                  <div class='social-media-wrap'>
+                    
+                    <div class='website-rights'>Techkriti © 2022</div>
+                    <div class='social-icons'>
+                    <a
+                    class='social-icon-link facebook'
+                    href="https://www.facebook.com/techkriti.iitk" target="_blank"> <i class='fab fa-facebook-f'></i></a>
+                      
+                      <a
+                       rel="noopener noreferrer" href="https://www.instagram.com/techkriti.iitk/"
+                        class='social-icon-link instagram'
+                        target='_blank'
+                        aria-label='Instagram'
+                      >
+                        <i class='fab fa-instagram'></i>
+                      </a>
+                      
+                      <a
+                        class='social-icon-link youtube'
+                        rel="noopener noreferrer" href="https://www.youtube.com/c/TechkritiIITKanpur"
+                        target='_blank'
+                        aria-label='Youtube'
+                      >
+                        <i class='fab fa-youtube'></i>
+                      </a>
+                      <a
+                        class='social-icon-link twitter'
+                        rel="noopener noreferrer" href="https://twitter.com/techkriti_iitk"
+                        target='_blank'
+                        aria-label='Twitter'
+                      >
+                        <i class='fab fa-twitter'></i>
+                      </a>
+                      <a
+                        class='social-icon-link twitter'
+                        rel="noopener noreferrer" href="https://www.linkedin.com/school/techkriti'13/"
+                        target='_blank'
+                        aria-label='LinkedIn'
+                      >
+                        <i class='fab fa-linkedin'></i>
+                      </a>
+                    </div>
+                  </div>
+                </section>
+              </div>
   </body>
 </html>
