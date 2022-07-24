@@ -1,7 +1,6 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth2").Strategy;
 const User = require("../routes/registerModels");
-// "https://ca-portal-techkriti-iitk.herokuapp.com/google/callback",
 
 passport.use(
   new GoogleStrategy(
@@ -9,7 +8,8 @@ passport.use(
       clientID:
         "195118986970-o3vldjfl0omasjphi6ue1ibpk5tfo29a.apps.googleusercontent.com",
       clientSecret: "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",
-      callbackURL: "http://localhost:3000/google/callback",
+      callbackURL:
+        "https://ca-portal-techkriti-iitk.herokuapp.com/google/callback",
       passReqToCallback: true,
     },
     function (request, accessToken, refreshToken, profile, done) {
