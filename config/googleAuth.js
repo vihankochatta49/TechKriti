@@ -6,8 +6,8 @@ passport.use(
   new GoogleStrategy(
     {
       clientID:
-        "195118986970-o3vldjfl0omasjphi6ue1ibpk5tfo29a.apps.googleusercontent.com",
-      clientSecret: "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",
+        "*****",
+      clientSecret: "*****",
       callbackURL:
         "https://ca-portal-techkriti-iitk.herokuapp.com/google/callback",
       passReqToCallback: true,
